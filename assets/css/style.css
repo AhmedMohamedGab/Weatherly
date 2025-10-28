@@ -4,7 +4,136 @@ Color Palette
 #131416 -> woodsmoke    (website background)
 #f3f3f3 -> athens gray  (main text and card background when hovered)
 #212324 -> shark        (card background)
-#2f3133 -> onyx         (card borders)
+#4A5057 -> abbey         (card borders)
 #1481f5 -> blue         (icons)
 #afb3b6 -> bombay       (icons and subtext)
- */
+*/
+
+:root {
+    --bg-color: #131416;
+    --text-color: #f3f3f3;
+    --card-bg: #212324;
+    --card-border: #4A5057;
+    --icon-color: #1481f5;
+    --subtext-color: #afb3b6;
+}
+
+.dark {
+    --bg-color: #f3f3f3;
+    --text-color: #131416;
+    --card-bg: #f5f5f5;
+    --card-border: #e6e8e9;
+    --icon-color: #0A77EB;
+    --subtext-color: #54595F;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Roboto, system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+header {
+    width: 100%;
+    border-bottom: solid 1px var(--card-border);
+}
+
+nav {
+    max-width: 1280px;
+    margin: auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: inline-flex;
+    gap: 12px;
+}
+
+.logo img {
+    width: 32px;
+    height: 32px;
+}
+
+.logo h1 {
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    width: 628px;
+    height: 100%;
+    padding: 8px 36px;
+    background-color: transparent;
+    border: solid 1px var(--card-border);
+    border-radius: 6px;
+    outline: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.search-bar input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--subtext-color);
+}
+
+.search-bar input:focus {
+    outline: solid 3px var(--icon-color);
+    outline-offset: 3px;
+}
+
+.search-bar .lucide {
+    width: 16px;
+    height: 16px;
+    stroke: var(--subtext-color);
+    position: absolute;
+    left: 12px;
+    top: 10px;
+}
+
+#location-btn,
+#theme-btn {
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#location-btn {
+    border: solid 1px var(--card-border);
+}
+
+#location-btn:hover,
+#theme-btn:hover {
+    background-color: var(--card-bg);
+}
+
+#location-btn .lucide,
+#theme-btn .lucide {
+    width: 16px;
+    height: 16px;
+    stroke: var(--text-color);
+}
