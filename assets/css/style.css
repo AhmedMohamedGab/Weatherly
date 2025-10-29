@@ -1,30 +1,21 @@
-/* 
-Color Palette
-
-#131416 -> woodsmoke    (website background)
-#f3f3f3 -> athens gray  (main text and card background when hovered)
-#212324 -> shark        (card background)
-#4A5057 -> abbey         (card borders)
-#1481f5 -> blue         (icons)
-#afb3b6 -> bombay       (icons and subtext)
-*/
+.dark {
+    --bg-color: #fafafa;
+    --text-color: #131416;
+    --card-bg: #f3f3f4;
+    --card-border: #b6bcc1;
+    --card-hover: #dde0e3;
+    --icon-color: #0a77eb;
+    --subtext-color: #54595f;
+}
 
 :root {
     --bg-color: #131416;
     --text-color: #f3f3f3;
-    --card-bg: #212324;
-    --card-border: #4A5057;
+    --card-bg: #181a1b;
+    --card-border: #4a5057;
+    --card-hover: #292e32;
     --icon-color: #1481f5;
     --subtext-color: #afb3b6;
-}
-
-.dark {
-    --bg-color: #f3f3f3;
-    --text-color: #131416;
-    --card-bg: #f5f5f5;
-    --card-border: #e6e8e9;
-    --icon-color: #0A77EB;
-    --subtext-color: #54595F;
 }
 
 * {
@@ -38,6 +29,7 @@ body {
     background-color: var(--bg-color);
 }
 
+/* header section */
 header {
     width: 100%;
     border-bottom: solid 1px var(--card-border);
@@ -136,4 +128,239 @@ nav {
     width: 16px;
     height: 16px;
     stroke: var(--text-color);
+}
+
+/* main content */
+main {
+    max-width: 1280px;
+    padding: 32px;
+    margin: auto;
+}
+
+section {
+    margin-top: 32px;
+}
+
+section:first-of-type {
+    margin-top: 0;
+}
+
+/* first section => weather now */
+#address {
+    font-size: 36px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.weather {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.weather .lucide {
+    width: 96px;
+    height: 96px;
+    stroke: var(--icon-color);
+}
+
+.details {
+    margin-top: 16px;
+}
+
+#temp-now {
+    font-size: 72px;
+    color: var(--text-color);
+    font-weight: 900;
+}
+
+.description {
+    margin-top: 4px;
+    display: inline-flex;
+    gap: 12px;
+    color: var(--subtext-color);
+    font-size: 24px;
+}
+
+.description span {
+    font-weight: 900;
+}
+
+.statistics {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.statistics>div {
+    padding: 16px;
+    background-color: var(--card-bg);
+    border: solid 1px var(--card-border);
+    border-radius: 10px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+}
+
+.label .lucide {
+    width: 16px;
+    height: 16px;
+    stroke: var(--subtext-color);
+}
+
+.label span {
+    font-size: 14px;
+    color: var(--subtext-color);
+}
+
+.statistics p {
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* second section => hourly forecast */
+section h2 {
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.hours-div {
+    padding: 8px 0;
+    margin-top: 16px;
+    display: flex;
+    border-radius: 10px;
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
+.hours-div::-webkit-scrollbar {
+    background-color: transparent;
+    height: 0;
+}
+
+.hours-div::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.hours-div::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.hour-div {
+    flex-basis: 100px;
+    flex-shrink: 0;
+    padding: 16px;
+    background-color: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.hour-div:hover {
+    transform: scale(1.1);
+    background-color: var(--card-hover);
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.hour {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.hour-div .lucide {
+    width: 32px;
+    height: 32px;
+    stroke: var(--icon-color);
+}
+
+.temp-hour {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.days-div {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+}
+
+.day-div {
+    padding: 16px;
+    background-color: var(--card-bg);
+    border: solid 1px var(--card-border);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.1s;
+}
+
+.day-div:hover {
+    background-color: var(--card-hover);
+}
+
+.day {
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.day-div .lucide {
+    width: 40px;
+    height: 40px;
+    stroke: var(--icon-color);
+}
+
+.temp-day {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.condition-day {
+    font-size: 14px;
+    color: var(--subtext-color);
+}
+
+footer {
+    width: 100%;
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--card-border);
+    padding: 32px 0;
+    margin: 64px 0 0;
+}
+
+footer p {
+    max-width: 1280px;
+    color: var(--subtext-color);
+    font-size: 14px;
+    text-align: center;
+    margin: auto;
+}
+
+footer .lucide {
+    width: 16px;
+    height: 16px;
+    stroke: var(--card-border);
+}
+
+footer a {
+    color: var(--icon-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
