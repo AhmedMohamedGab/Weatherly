@@ -1,0 +1,32 @@
+const themeBtn = document.getElementById('theme-btn');  // theme button
+
+// fetch theme on page load
+export function fetchTheme() {
+    // if page is loaded for the first time => set theme to light
+    if (!localStorage.theme) {
+        localStorage.theme = 'light';
+    }
+
+    if (localStorage.theme === 'light') {   // if theme preference is light =>
+        document.body.classList.remove('dark'); // remove dark styles
+        themeBtn.innerHTML = `<i data-lucide="moon"></i>`;  // set theme button to moon icon
+    } else {    // if theme preference is dark =>
+        document.body.classList.add('dark'); // add dark styles
+        themeBtn.innerHTML = `<i data-lucide="sun"></i>`;   // set theme button to sun icon
+    }
+}
+
+// change page theme on clicking on theme button
+export function changeTheme() {
+    if (localStorage.theme === 'light') {   // if theme is light =>
+        localStorage.theme = 'dark';    // change theme preference
+        document.body.classList.add('dark'); // add dark styles
+        themeBtn.innerHTML = `<i data-lucide="sun"></i>`;   // set theme button to sun icon
+    } else {    // if theme is dark =>
+        localStorage.theme = 'light';    // change theme preference
+        document.body.classList.remove('dark'); // remove dark styles
+        themeBtn.innerHTML = `<i data-lucide="moon"></i>`;  // set theme button to moon icon
+    }
+    // update icons
+    lucide.createIcons();
+}

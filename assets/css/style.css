@@ -1,4 +1,4 @@
-.dark {
+:root {
     --bg-color: #fafafa;
     --text-color: #131416;
     --card-bg: #f3f3f4;
@@ -8,7 +8,7 @@
     --subtext-color: #54595f;
 }
 
-:root {
+.dark {
     --bg-color: #131416;
     --text-color: #f3f3f3;
     --card-bg: #181a1b;
@@ -46,6 +46,7 @@ nav {
 
 .logo {
     display: inline-flex;
+    align-items: center;
     gap: 12px;
 }
 
@@ -111,6 +112,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     cursor: pointer;
 }
 
@@ -120,7 +122,7 @@ nav {
 
 #location-btn:hover,
 #theme-btn:hover {
-    background-color: var(--card-bg);
+    background-color: var(--card-hover);
 }
 
 #location-btn .lucide,
@@ -352,7 +354,9 @@ footer p {
 footer .lucide {
     width: 16px;
     height: 16px;
-    stroke: var(--card-border);
+    stroke-width: 3;
+    stroke: red;
+    fill: red;
 }
 
 footer a {
