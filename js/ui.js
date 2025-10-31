@@ -1,4 +1,6 @@
 const themeBtn = document.getElementById('theme-btn');  // theme button
+const searchInput = document.getElementById('search-input');  // search box
+const xBtn = document.getElementById('x-btn');  // x button
 
 // fetch theme on page load
 export function fetchTheme() {
@@ -29,4 +31,20 @@ export function changeTheme() {
     }
     // update icons
     lucide.createIcons();
+}
+
+// show or hide x button in search box depending on search box input
+export function showHideXBtn() {
+    if (searchInput.value === '') { // if no input => hide x button
+        xBtn.style.display = 'none';
+    } else {    // if input exists => show x button
+        xBtn.style.display = 'block';
+    }
+}
+
+// clear search box input when clicking on x button
+export function clearInput() {
+    searchInput.value = ''; // clear input
+    xBtn.style.display = 'none';    // hide x button
+    searchInput.blur(); // remove focus on search box
 }

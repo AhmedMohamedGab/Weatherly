@@ -93,7 +93,7 @@ nav {
     outline-offset: 3px;
 }
 
-.search-bar .lucide {
+.search-bar .lucide#search-icon {
     width: 16px;
     height: 16px;
     stroke: var(--subtext-color);
@@ -102,6 +102,7 @@ nav {
     top: 10px;
 }
 
+#x-btn,
 #location-btn,
 #theme-btn {
     width: 36px;
@@ -116,13 +117,34 @@ nav {
     cursor: pointer;
 }
 
+#x-btn {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 #location-btn {
     border: solid 1px var(--card-border);
+}
+
+#x-btn:hover .lucide {
+    stroke: var(--text-color);
 }
 
 #location-btn:hover,
 #theme-btn:hover {
     background-color: var(--card-hover);
+}
+
+#x-btn .lucide {
+    width: 16px;
+    height: 16px;
+    stroke: var(--subtext-color);
+}
+
+#x-btn .lucide:hover {
+    stroke: var(--text-color);
 }
 
 #location-btn .lucide,
