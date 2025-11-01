@@ -26,7 +26,7 @@
                     <img src="./assets/images/icons/weatherly-logo.png" alt="weatherly-logo">
                     <h1>Weatherly</h1>
                 </div>
-                <form action="index.html" target="_self" method="get" class="search-form">
+                <div class="search-area">
                     <div class="search-bar">
                         <i data-lucide="search" id="search-icon"></i>
                         <input type="text" id="search-input" placeholder="Search for a city or location...">
@@ -34,10 +34,10 @@
                             <i data-lucide="x"></i>
                         </button>
                     </div>
-                    <button type="submit" id="location-btn">
+                    <button type="button" id="location-btn">
                         <i data-lucide="map-pin"></i>
                     </button>
-                </form>
+                </div>
                 <button type="button" id="theme-btn">
                     <i data-lucide="moon"></i>
                 </button>
@@ -238,6 +238,9 @@
                 </div>
             </section>
         </main>
+
+        <!-- toasts container -->
+        <div class="toastBox"></div>
 
         <footer>
             <p>

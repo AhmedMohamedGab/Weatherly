@@ -48,3 +48,28 @@ export function clearInput() {
     xBtn.style.display = 'none';    // hide x button
     searchInput.blur(); // remove focus on search box
 }
+
+// show toast message
+export function showToast(icon, message) {
+    // create toast container
+    let toast = document.createElement('div');
+    toast.id = 'toast';
+    let toastBox = document.querySelector('.toastBox');
+    toastBox.appendChild(toast);
+    // add toast content
+    toast.innerHTML = `
+        <i data-lucide="${icon}"></i>
+        <div class="toast-content">
+            ${message}
+        </div>
+    `;
+    // update icons
+    lucide.createIcons();
+    // hide toast after 3 seconds
+    setTimeout(() => {
+        toast.classList.add("close");
+    }, 3000);
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 4000);
+}
