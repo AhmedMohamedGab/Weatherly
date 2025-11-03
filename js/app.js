@@ -1,4 +1,4 @@
-import { fetchTheme, changeTheme, showHideXBtn, clearInput, showToast } from "./ui.js";
+import { fetchTheme, changeTheme, showHideXBtn, clearInput, showToast, renderWeatherData } from "./ui.js";
 
 const APIKey = 'HZ6DR5BEU5FT5YH8JR5CBA4QL'; // visualcrossing API key
 
@@ -25,7 +25,7 @@ xBtn.addEventListener('click', clearInput);
 // on clicking on location button
 locationBtn.addEventListener('click', () => {
     if ("geolocation" in navigator) {   // check if geolocation service is supported by the browser
-        showToast('map-pin', 'Getting your location...');
+        showToast('pin', 'Getting your location...');
         fetchWeatherData();
     } else {    // if geolocation service is not supported by the browser (in old browsers)
         alert("Geolocation is not supported by this browser.");
@@ -37,11 +37,19 @@ async function fetchWeatherData() {
     try {
         const coordinates = await getLocation();    // Wait for getLocation Promise to resolve
         const [lat, lon] = coordinates;
+        showToast('cloud-download', 'Fetching weather data...');
         const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${lat},${lon}?key=${APIKey}&unitGroup=metric&elements=datetime,tempmax,tempmin,temp,feelslike,humidity,precipprob,windspeed,pressure,visibility,conditions,icon`);
         const data = await response.json();
-        console.log(data);
+        if (response.status === 200) {
+            renderWeatherData(data);
+            showToast('circle-check-big', 'Weather fetched successfully!');
+        } else if (response.status === 400) {
+            showToast('map-pin-x', 'Invalid location! check the spelling.');
+        } else {
+            showToast('server-off', 'Server error! Try again later.');
+        }
     } catch (error) {
-        showToast('x', 'Could not get weather data.');
+        showToast('circle-x', 'Could not get weather data.');
     }
 }
 
@@ -54,7 +62,7 @@ function getLocation() {
                 resolve([latitude, longitude]);
             },
             (err) => {
-                reject(showToast('x', 'Could not get your location. Please enable location access and try again.'));
+                reject(showToast('map-pin-off', 'Could not get your location. Please enable location access and try again.'));
             },
             {
                 enableHighAccuracy: false, // start low accuracy for faster results

@@ -176,6 +176,12 @@ section:first-of-type {
     text-align: center;
 }
 
+#time-zone {
+    font-size: 18px;
+    color: var(--subtext-color);
+    text-align: center;
+}
+
 .weather {
     text-align: center;
     margin-top: 24px;
