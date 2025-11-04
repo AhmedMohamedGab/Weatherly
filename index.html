@@ -49,54 +49,56 @@
                 <h1 id="address">San Francisco, USA</h1>
                 <h3 id="time-zone">America/Los_Angeles</h3>
                 <div class="weather">
-                    <i data-lucide="sun"></i>
+                    <div id="now-icon">
+                        <i data-lucide="sun"></i>
+                    </div>
                     <div class="details">
                         <div id="temp-now">24°</div>
                         <div id="condition">Partly Cloudy</div>
                     </div>
                 </div>
                 <div class="statistics">
-                    <div id="humidity">
+                    <div>
                         <div class="label">
                             <i data-lucide="droplets"></i>
                             <span>Humidity</span>
                         </div>
-                        <p>65%</p>
+                        <p id="humidity">65%</p>
                     </div>
-                    <div id="wind-speed">
+                    <div>
                         <div class="label">
                             <i data-lucide="wind"></i>
                             <span>Wind Speed</span>
                         </div>
-                        <p>15 km/h</p>
+                        <p id="wind-speed">15 km/h</p>
                     </div>
-                    <div id="pressure">
+                    <div>
                         <div class="label">
                             <i data-lucide="gauge"></i>
                             <span>Pressure</span>
                         </div>
-                        <p>1013 mb</p>
+                        <p id="pressure">1013 mb</p>
                     </div>
-                    <div id="visibility">
+                    <div>
                         <div class="label">
                             <i data-lucide="eye"></i>
                             <span>Visibility</span>
                         </div>
-                        <p>10 km</p>
+                        <p id="visibility">10 km</p>
                     </div>
-                    <div id="uv-index">
+                    <div>
                         <div class="label">
                             <i data-lucide="cloud-rain"></i>
                             <span>Chance of Rain</span>
                         </div>
-                        <p>6%</p>
+                        <p id="chance-of-rain">6%</p>
                     </div>
-                    <div id="feels-like">
+                    <div>
                         <div class="label">
                             <i data-lucide="cloud"></i>
                             <span>Feels Like</span>
                         </div>
-                        <p>22°</p>
+                        <p id="feels-like">22°</p>
                     </div>
                 </div>
             </section>
@@ -106,12 +108,12 @@
                 <div class="hours-div">
                     <div class="hour-div">
                         <p class="hour">Now</p>
-                        <i data-lucide="cloud-sun"></i>
+                        <i data-lucide="sun"></i>
                         <p class="temp-hour">24°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">1 PM</p>
-                        <i data-lucide="cloud-sun"></i>
+                        <i data-lucide="sun"></i>
                         <p class="temp-hour">25°</p>
                     </div>
                     <div class="hour-div">
@@ -121,68 +123,108 @@
                     </div>
                     <div class="hour-div">
                         <p class="hour">3 PM</p>
-                        <i data-lucide="sun"></i>
+                        <i data-lucide="cloud-sun"></i>
                         <p class="temp-hour">27°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">4 PM</p>
-                        <i data-lucide="sun"></i>
+                        <i data-lucide="cloud-sun"></i>
                         <p class="temp-hour">26°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">5 PM</p>
-                        <i data-lucide="cloud-sun"></i>
+                        <i data-lucide="cloudy"></i>
                         <p class="temp-hour">25°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">6 PM</p>
-                        <i data-lucide="cloud-sun"></i>
-                        <p class="temp-hour">23°</p>
+                        <i data-lucide="cloud-moon"></i>
+                        <p class="temp-hour">24°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">7 PM</p>
-                        <i data-lucide="cloud"></i>
-                        <p class="temp-hour">22°</p>
+                        <i data-lucide="cloud-moon"></i>
+                        <p class="temp-hour">24°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">8 PM</p>
-                        <i data-lucide="cloud"></i>
-                        <p class="temp-hour">21°</p>
+                        <i data-lucide="cloud-moon"></i>
+                        <p class="temp-hour">23°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">9 PM</p>
                         <i data-lucide="cloud-rain"></i>
-                        <p class="temp-hour">20°</p>
+                        <p class="temp-hour">23°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">10 PM</p>
                         <i data-lucide="cloud-rain"></i>
-                        <p class="temp-hour">19°</p>
+                        <p class="temp-hour">22°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">11 PM</p>
-                        <i data-lucide="cloud"></i>
-                        <p class="temp-hour">18°</p>
+                        <i data-lucide="cloud-moon"></i>
+                        <p class="temp-hour">21°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">12 AM</p>
-                        <i data-lucide="cloud"></i>
-                        <p class="temp-hour">17°</p>
+                        <i data-lucide="cloud-moon"></i>
+                        <p class="temp-hour">20°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">1 AM</p>
-                        <i data-lucide="cloudy"></i>
-                        <p class="temp-hour">16°</p>
+                        <i data-lucide="moon"></i>
+                        <p class="temp-hour">19°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">2 AM</p>
-                        <i data-lucide="cloudy"></i>
-                        <p class="temp-hour">15°</p>
+                        <i data-lucide="moon"></i>
+                        <p class="temp-hour">18°</p>
                     </div>
                     <div class="hour-div">
                         <p class="hour">3 AM</p>
-                        <i data-lucide="cloudy"></i>
-                        <p class="temp-hour">14°</p>
+                        <i data-lucide="moon"></i>
+                        <p class="temp-hour">17°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">4 AM</p>
+                        <i data-lucide="moon"></i>
+                        <p class="temp-hour">17°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">5 AM</p>
+                        <i data-lucide="cloud-moon"></i>
+                        <p class="temp-hour">16°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">6 AM</p>
+                        <i data-lucide="cloud-sun"></i>
+                        <p class="temp-hour">16°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">7 AM</p>
+                        <i data-lucide="cloud-sun"></i>
+                        <p class="temp-hour">17°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">8 AM</p>
+                        <i data-lucide="sun"></i>
+                        <p class="temp-hour">19°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">9 AM</p>
+                        <i data-lucide="sun"></i>
+                        <p class="temp-hour">20°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">10 AM</p>
+                        <i data-lucide="sun"></i>
+                        <p class="temp-hour">21°</p>
+                    </div>
+                    <div class="hour-div">
+                        <p class="hour">11 AM</p>
+                        <i data-lucide="sun"></i>
+                        <p class="temp-hour">23°</p>
                     </div>
                 </div>
             </section>
