@@ -171,8 +171,11 @@ section:first-of-type {
 
 /* first section => weather now */
 #address {
+    max-width: 600px;
+    margin: auto;
     font-size: 36px;
     color: var(--text-color);
+    text-transform: capitalize;
     text-align: center;
     line-height: 1.5;
 }
@@ -356,6 +359,7 @@ section h2 {
 .condition-day {
     font-size: 14px;
     color: var(--subtext-color);
+    text-align: center;
 }
 
 footer {

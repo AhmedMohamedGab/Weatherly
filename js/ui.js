@@ -93,11 +93,12 @@ export function showToast(icon, message) {
 
 // display weather data for users
 export function renderWeatherData(data) {
-    let dateObj = new Date();
-    let hour = dateObj.getHours();
-    let day = dateObj.getDay();
-    let currentHourData = data.days[0].hours[hour];
+    let dateObj = new Date();   // current date object
+    let hour = dateObj.getHours();  // current hour
+    let day = dateObj.getDay();   // current day of the week
+    let currentHourData = data.days[0].hours[hour]; // current hour weather data
 
+    // render now, hourly and 7-day sections
     renderNowSection(data, currentHourData);
     renderHourlySection(data, hour);
     renderSevenDaySection(data, day);
@@ -107,27 +108,29 @@ export function renderWeatherData(data) {
 
 // render weather data in now section
 function renderNowSection(data, currentHourData) {
-    document.getElementById('address').innerHTML = data.resolvedAddress;
-    document.getElementById('time-zone').innerHTML = data.timezone;
-    document.querySelector('#now-icon').innerHTML = `<i data-lucide="${icons[currentHourData.icon]}"></i>`;
-    document.getElementById('temp-now').innerHTML = Math.round(currentHourData.temp) + '°';
-    document.getElementById('condition').innerHTML = currentHourData.conditions;
-    document.getElementById('humidity').innerHTML = Math.round(currentHourData.humidity) + '%';
-    document.getElementById('wind-speed').innerHTML = currentHourData.windspeed + ' km/h';
-    document.getElementById('pressure').innerHTML = currentHourData.pressure + ' mb';
-    document.getElementById('visibility').innerHTML = Math.round(currentHourData.visibility) + ' km';
-    document.getElementById('chance-of-rain').innerHTML = Math.round(currentHourData.precipprob) + '%';
-    document.getElementById('feels-like').innerHTML = Math.round(currentHourData.feelslike) + '°';
+    document.getElementById('address').innerHTML = data.resolvedAddress;    // location address
+    document.getElementById('time-zone').innerHTML = data.timezone;  // time zone
+    document.getElementById('now-icon').innerHTML = `<i data-lucide="${icons[currentHourData.icon]}"></i>`; // current weather icon
+    document.getElementById('temp-now').innerHTML = Math.round(currentHourData.temp) + '°'; // current temperature
+    document.getElementById('condition').innerHTML = currentHourData.conditions;    // current weather condition
+    document.getElementById('humidity').innerHTML = Math.round(currentHourData.humidity) + '%'; // current humidity
+    document.getElementById('wind-speed').innerHTML = currentHourData.windspeed + ' km/h';  // current wind speed
+    document.getElementById('pressure').innerHTML = currentHourData.pressure + ' mb';   // current pressure
+    document.getElementById('visibility').innerHTML = Math.round(currentHourData.visibility) + ' km';   // current visibility
+    document.getElementById('chance-of-rain').innerHTML = Math.round(currentHourData.precipprob) + '%'; // current chance of rain
+    document.getElementById('feels-like').innerHTML = Math.round(currentHourData.feelslike) + '°';  // current feels like temperature
 }
 
 // render weather data in hourly section
 function renderHourlySection(data, hour) {
-    let dayIndex = 0;
-    let hourHolder = '';
-    let iconHolder = '';
-    let tempHolder = '';
+    let dayIndex = 0;   // index to track the day in data.days array
+    let hourHolder = '';    // to hold formatted hour string
+    let iconHolder = '';    // to hold icon name
+    let tempHolder = '';    // to hold temperature string
 
+    // populate hourly divs
     document.querySelectorAll('.hour-div').forEach((div, index) => {
+        // format hour to 12-hour format with AM/PM
         if (hour === 0) {
             hourHolder = '12 AM';
         } else if (hour > 0 && hour < 12) {
@@ -137,20 +140,23 @@ function renderHourlySection(data, hour) {
         } else if (hour > 12) {
             hourHolder = hour - 12 + ' PM';
         }
-
+        // set 'Now' for the current hour
         if (index === 0) {
             hourHolder = 'Now';
         }
 
+        // get icon and temperature for the hour
         iconHolder = icons[data.days[dayIndex].hours[hour].icon];
         tempHolder = Math.round(data.days[dayIndex].hours[hour].temp) + '°';
 
+        // set inner HTML of hourly div
         div.innerHTML = `
             <p class="hour">${hourHolder}</p>
             <i data-lucide="${iconHolder}"></i>
             <p class="temp-hour">${tempHolder}</p>
         `;
 
+        // increment hour and dayIndex as needed
         hour++;
         if (hour == 24) {
             dayIndex = 1;
@@ -161,20 +167,25 @@ function renderHourlySection(data, hour) {
 
 // render weather data in 7-day section
 function renderSevenDaySection(data, day) {
-    let dayHolder = '';
-    let iconHolder = '';
-    let tempHolder = '';
-    let conditionHolder = '';
+    let dayHolder = '';   // to hold day string
+    let iconHolder = '';    // to hold icon name
+    let tempHolder = '';    // to hold temperature string
+    let conditionHolder = '';   // to hold condition string
 
+    // populate day divs
     document.querySelectorAll('.day-div').forEach((div, index) => {
-        dayHolder = days[day];
+        dayHolder = days[day];  // get day string from days array
+        // set 'Today' for the current day
         if (index === 0) {
             dayHolder = 'Today';
         }
+
+        // get icon, temperature and condition for the day
         iconHolder = icons[data.days[index].icon];
         tempHolder = Math.round(data.days[index].tempmax) + '°' + ' / ' + Math.round(data.days[index].tempmin) + '°';
         conditionHolder = data.days[index].conditions;
 
+        // set inner HTML of day div
         div.innerHTML = `
             <p class="day">${dayHolder}</p>
             <i data-lucide="${iconHolder}"></i>
@@ -182,6 +193,7 @@ function renderSevenDaySection(data, day) {
             <p class="condition-day">${conditionHolder}</p>
         `;
 
+        // increment day
         day = (day + 1) % 7;
     });
 }
