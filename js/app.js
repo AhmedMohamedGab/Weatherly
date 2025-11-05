@@ -11,6 +11,14 @@ const locationBtn = document.getElementById('location-btn');  // location button
 // on page load
 document.addEventListener('DOMContentLoaded', () => {
     fetchTheme();   // fetch theme from local storage
+
+    if ("geolocation" in navigator) {   // check if geolocation service is supported by the browser
+        showToast('pin', 'Getting your location...');   // toast message
+        fetchWeatherData(); // fetch weather conditions for user's location
+    } else {    // if geolocation service is not supported by the browser (in old browsers)
+        alert("Geolocation is not supported by this browser."); // alert message
+    }
+
     lucide.createIcons();   // update icons
 });
 

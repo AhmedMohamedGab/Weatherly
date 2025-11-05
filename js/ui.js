@@ -45,8 +45,8 @@ export function changeTheme() {
         document.body.classList.remove('dark'); // remove dark styles
         themeBtn.innerHTML = `<i data-lucide="moon"></i>`;  // set theme button to moon icon
     }
-    // update icons
-    lucide.createIcons();
+
+    lucide.createIcons();   // update icons
 }
 
 // show or hide x button in search box depending on search box input
@@ -79,8 +79,9 @@ export function showToast(icon, message) {
             ${message}
         </div>
     `;
-    // update icons
-    lucide.createIcons();
+
+    lucide.createIcons();   // update icons
+
     // hide toast after 5 seconds
     setTimeout(() => {
         toast.classList.add("close");
@@ -93,13 +94,15 @@ export function showToast(icon, message) {
 // display weather data for users
 export function renderWeatherData(data) {
     let dateObj = new Date();
-    let hour = dateObj.getUTCHours() + data.tzoffset;
-    let day = dateObj.getUTCDay();
+    let hour = dateObj.getHours();
+    let day = dateObj.getDay();
     let currentHourData = data.days[0].hours[hour];
 
     renderNowSection(data, currentHourData);
     renderHourlySection(data, hour);
     renderSevenDaySection(data, day);
+
+    lucide.createIcons();   // update icons
 }
 
 // render weather data in now section
@@ -168,9 +171,9 @@ function renderSevenDaySection(data, day) {
         if (index === 0) {
             dayHolder = 'Today';
         }
-        iconHolder = icons[data.days[i].icon];
-        tempHolder = Math.round(data.days[i].tempmax) + '°' + ' / ' + Math.round(data.days[i].tempmin) + '°';
-        conditionHolder = data.days[i].conditions;
+        iconHolder = icons[data.days[index].icon];
+        tempHolder = Math.round(data.days[index].tempmax) + '°' + ' / ' + Math.round(data.days[index].tempmin) + '°';
+        conditionHolder = data.days[index].conditions;
 
         div.innerHTML = `
             <p class="day">${dayHolder}</p>
