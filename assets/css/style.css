@@ -154,6 +154,40 @@ nav {
     stroke: var(--text-color);
 }
 
+#search-history {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    background-color: var(--card-bg);
+    border: solid 1px var(--card-border);
+    border-radius: 6px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px 16px;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.history-item:hover {
+    background-color: var(--card-hover);
+}
+
+.no-history {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--text-color);
+    text-align: center;
+}
+
 /* main content */
 main {
     max-width: 1280px;

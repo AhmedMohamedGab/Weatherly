@@ -17,6 +17,7 @@ const icons = {
 const themeBtn = document.getElementById('theme-btn');  // theme button
 const searchInput = document.getElementById('search-input');  // search box
 const xBtn = document.getElementById('x-btn');  // x button
+const searchHistoryContainer = document.getElementById('search-history'); // search history container
 
 // fetch theme on page load
 export function fetchTheme() {
@@ -62,7 +63,39 @@ export function showHideXBtn() {
 export function clearInput() {
     searchInput.value = ''; // clear input
     xBtn.style.display = 'none';    // hide x button
+    searchHistoryContainer.style.display = 'none'; // hide search history container
     searchInput.blur(); // remove focus on search box
+}
+
+// hide search history section when clicking on a search history item or outside the search box
+export function hideSearchHistory() {
+    searchHistoryContainer.style.display = 'none'; // hide search history container
+    searchInput.blur(); // remove focus on search box
+}
+
+// show search history items when user focuses on search box and filter items based on input
+export function renderSearchHistory(searchHistory) {
+    searchHistoryContainer.innerHTML = ''; // clear previous search history items
+
+    // if there are no search history items
+    if (searchHistory.length === 0) {
+        searchHistoryContainer.innerHTML = `<p class="no-history">No search history</p>`;   // div showing 'No search history'
+        if (searchInput.value === '') { // if search bar is empty
+            searchHistoryContainer.style.display = 'block'; // show 'No search history' div
+        } else {    // if user types in search bar
+            searchHistoryContainer.style.display = 'none'; // hide 'No search history' div
+        }
+        return; // exit
+    }
+    // search history exists
+    // add each search history item to the container
+    searchHistory.forEach(item => {
+        if (item.includes(searchInput.value)) {
+            searchHistoryContainer.innerHTML += `<div class="history-item">${item}</div>`;
+        }
+    });
+
+    searchHistoryContainer.style.display = 'block'; // show search history container
 }
 
 // show toast message
@@ -82,13 +115,13 @@ export function showToast(icon, message) {
 
     lucide.createIcons();   // update icons
 
-    // hide toast after 5 seconds
+    // hide toast after 4.5 seconds
     setTimeout(() => {
         toast.classList.add("close");
-    }, 4000);
+    }, 3500);
     setTimeout(() => {
         toast.style.display = "none";
-    }, 5000);
+    }, 4500);
 }
 
 // display weather data for users

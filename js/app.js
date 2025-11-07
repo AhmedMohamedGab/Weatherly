@@ -1,5 +1,7 @@
 // import UI control functions
-import { fetchTheme, changeTheme, showHideXBtn, clearInput, showToast, renderWeatherData } from "./ui.js";
+import { fetchTheme, changeTheme, showHideXBtn, clearInput, showToast, renderWeatherData, hideSearchHistory, renderSearchHistory } from "./ui.js";
+// import search history functions
+import { searchHistory, getSearchHistory, addHistoryItem } from "./storage.js";
 
 // API keys
 const VISUALCROSSING_API_KEY = 'HZ6DR5BEU5FT5YH8JR5CBA4QL'; // VisualCrossing API key
@@ -10,10 +12,12 @@ const themeBtn = document.getElementById('theme-btn');  // theme button
 const searchInput = document.getElementById('search-input');  // search box
 const xBtn = document.getElementById('x-btn');  // x button
 const locationBtn = document.getElementById('location-btn');  // location button
+const searchHistoryContainer = document.getElementById('search-history'); // search history container
 
 // on page load
 document.addEventListener('DOMContentLoaded', () => {
     fetchTheme();   // fetch theme from local storage
+    getSearchHistory();  // get search history from local storage
 
     // get weather for user's location
     if ("geolocation" in navigator) {   // check if geolocation service is supported by the browser
@@ -29,8 +33,28 @@ document.addEventListener('DOMContentLoaded', () => {
 // on clicking on theme button => change theme
 themeBtn.addEventListener('click', changeTheme);
 
-// on typing in search box => show or hide x button
-searchInput.addEventListener('keyup', showHideXBtn);
+// on focusing on search box => render search history items
+searchInput.addEventListener('focus', () => {
+    renderSearchHistory(searchHistory); // show search history items
+});
+
+// hide search history when clicking outside the search input or history container
+document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target === searchInput) return; // keep open when clicking input
+    if (searchHistoryContainer.contains(target)) return; // keep open when interacting with history
+    hideSearchHistory();    // hide search history container
+});
+
+// on clicking on search history item
+searchHistoryContainer.addEventListener('click', (event) => {
+    const historyItem = event.target.closest('.history-item');  // get clicked history item
+    if (!historyItem) return; // if no history item clicked => return
+    searchInput.value = historyItem.innerHTML; // set search box input to clicked history item
+    fetchWeatherData(historyItem.innerHTML);  // fetch weather data for the clicked history item
+    addHistoryItem(historyItem.innerHTML);  // add address to search history
+    hideSearchHistory();    // hide search history container
+});
 
 // on clicking on x button => clear search box input
 xBtn.addEventListener('click', clearInput);
@@ -78,7 +102,7 @@ async function getAddressFromCoordinates(lat, lon) {
     }
 }
 
-// fetch weather data for user's address using visualcrossing weather API
+// fetch weather data using visualcrossing weather API
 async function fetchWeatherData(address) {
     // fetch weather data from VisualCrossing API
     try {   // on success
@@ -123,12 +147,21 @@ locationBtn.addEventListener('click', () => {
 });
 
 // on pressing Enter key in search box => fetch weather data for the entered location
-searchInput.addEventListener('keypress', (event) => {
+searchInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') { // if Enter key is pressed
-        const address = searchInput.value.trim(); // get entered location and trim whitespace
+        // get entered location, trim whitespace and capitalize each word
+        const address = searchInput.value
+            .trim()
+            .split(/\s+/)
+            .map(w => w ? w.charAt(0).toUpperCase() + w.slice(1).toLowerCase() : '')
+            .join(' ');
         if (address !== '') { // if address is not empty
             fetchWeatherData(address);  // fetch weather data for the entered location
-            searchInput.blur(); // remove focus from search box
+            addHistoryItem(address);  // add address to search history
+            hideSearchHistory(); // hide search history container
         }
+    } else {
+        showHideXBtn(); // show or hide x button
+        renderSearchHistory(searchHistory); // show search history items
     }
 });
