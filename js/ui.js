@@ -103,8 +103,6 @@ export function showToast(icon, message) {
     // create toast container
     let toast = document.createElement('div');
     toast.id = 'toast';
-    let toastBox = document.querySelector('.toastBox');
-    toastBox.appendChild(toast);
     // add toast content
     toast.innerHTML = `
         <i data-lucide="${icon}"></i>
@@ -115,12 +113,17 @@ export function showToast(icon, message) {
 
     lucide.createIcons();   // update icons
 
+    let toastBox = document.querySelector('.toastBox'); // toast box container
+    toastBox.appendChild(toast); // add toast to toast box
+    toastBox.style.display = 'block'; // show toast box
+
     // hide toast after 4.5 seconds
     setTimeout(() => {
-        toast.classList.add("close");
+        toast.classList.add("close");   // start close animation
     }, 3500);
     setTimeout(() => {
-        toast.style.display = "none";
+        toast.style.display = "none";   // hide toast
+        toastBox.style.display = 'none'; // hide toast box
     }, 4500);
 }
 

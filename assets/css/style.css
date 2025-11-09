@@ -157,7 +157,7 @@ nav {
 #search-history {
     display: none;
     position: absolute;
-    top: 40px;
+    top: 42px;
     left: 0;
     width: 100%;
     background-color: var(--card-bg);
@@ -218,6 +218,7 @@ section:first-of-type {
     font-size: 18px;
     color: var(--subtext-color);
     text-align: center;
+    margin-top: 8px;
 }
 
 .weather {
@@ -248,6 +249,7 @@ section:first-of-type {
 }
 
 .statistics {
+    padding: 8px 0;
     margin-top: 24px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -293,7 +295,7 @@ section h2 {
 }
 
 .hours-div {
-    padding: 8px 0;
+    padding: 8px 5px;
     margin-top: 16px;
     display: flex;
     border-radius: 10px;
@@ -350,7 +352,9 @@ section h2 {
     color: var(--text-color);
 }
 
+/* third section => 7-day forecast */
 .days-div {
+    padding: 8px 0;
     margin-top: 16px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -396,6 +400,7 @@ section h2 {
     text-align: center;
 }
 
+/* footer section */
 footer {
     width: 100%;
     background-color: var(--bg-color);
@@ -430,7 +435,9 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* toast styles */
 .toastBox {
+    display: none;
     width: 386px;
     max-height: 312px;
     padding: 16px;
@@ -481,4 +488,130 @@ footer a:hover {
 
 .close {
     opacity: 0;
+}
+
+/* For small screens */
+@media (max-width: 948px) {
+
+    /* header section */
+    nav {
+        width: 100%;
+        padding: 12px 8px;
+    }
+
+    .logo {
+        gap: 4px;
+    }
+
+    .logo img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .logo h1 {
+        font-size: 14px;
+    }
+
+    .search-area {
+        gap: 6px;
+        margin: 0 6px;
+    }
+
+    .search-bar input {
+        width: 100%;
+        padding: 4px 26px;
+        font-size: 12px;
+    }
+
+    .search-bar input::placeholder {
+        font-size: 12px;
+    }
+
+    .search-bar input:focus {
+        outline: solid 2px var(--icon-color);
+        outline-offset: 1px;
+    }
+
+    .search-bar .lucide#search-icon {
+        left: 7px;
+    }
+
+    #search-history {
+        left: -30%;
+        width: 160%;
+    }
+
+    .history-item,
+    .no-history {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    /* main content */
+    main {
+        width: 100%;
+        padding: 16px;
+    }
+
+    section:first-of-type {
+        margin-top: 8px;
+    }
+
+    /* first section => weather now */
+    #address {
+        max-width: 75%;
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    #time-zone {
+        font-size: 14px;
+    }
+
+    .weather .lucide {
+        width: 88px;
+        height: 88px;
+    }
+
+    #temp-now {
+        font-size: 64px;
+    }
+
+    #condition {
+        font-size: 22px;
+    }
+
+    .statistics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    /* second section => hourly forecast */
+    .hour-div {
+        flex-basis: 85px;
+    }
+
+    /* third section => 7-day forecast */
+    .days-div {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    /* footer section */
+    footer {
+        padding: 16px 0;
+    }
+
+    /* toast styles */
+    .toastBox {
+        width: 95%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: auto;
+    }
+
+    #toast {
+        transform: translateY(-50px);
+    }
 }
