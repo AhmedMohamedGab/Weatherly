@@ -111,11 +111,11 @@ export function showToast(icon, message) {
         </div>
     `;
 
-    lucide.createIcons();   // update icons
-
     let toastBox = document.querySelector('.toastBox'); // toast box container
     toastBox.appendChild(toast); // add toast to toast box
     toastBox.style.display = 'block'; // show toast box
+    
+    lucide.createIcons();   // update icons
 
     // hide toast after 4.5 seconds
     setTimeout(() => {
